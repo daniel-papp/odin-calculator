@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.container.main{
+    width: 200px;
+    height: 400px;
+    margin: auto;
+    background-color: grey;
+}
+
+.container.buttons {
+    margin: auto;
+}
+
+.display {
+    width: 180px;
+    height: 1.5rem;
+    background-color: beige;
+    margin: auto;
+
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+}
