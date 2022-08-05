@@ -1,38 +1,83 @@
 // Declaring basic math operator functions
 
-function add(num1, num2) {
-    return num1 + num2;
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(num1, num2) {
-    return num1 - num2;
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(num1, num2) {
-    return num1 * num2;
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(num1, num2) {
-    return num1 / num2;
+function divide(a, b) {
+    return a / b;
 }
 
 // Declare the operate function
 
-function operate(operator, num1, num2) {
+function operate(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
     switch (operator) {
         case '+' :
-            return add(num1, num2);
+            return add(a, b);
             break;
         case '-' :
-            return subtract(num1, num2);
+            return subtract(a, b);
             break;
         case '*' :
-            return multiply(num1, num2);
+            return multiply(a, b);
             break;
         case '/' :
-            return divide(num1, num2);
+            return divide(a, b);
             break;
         default :
             return null;
     }
 }
+
+// Grabbing the HTML elements
+
+const display = document.getElementById('display');
+const zeroButton = document.getElementById('zero-btn');
+const oneButton = document.getElementById('one-btn');
+const twoButton = document.getElementById('two-btn');
+const threeButton = document.getElementById('three-btn');
+const fourButton = document.getElementById('four-btn');
+const fiveButton = document.getElementById('five-btn');
+const sixButton = document.getElementById('six-btn');
+const sevenButton = document.getElementById('seven-btn');
+const eightButton = document.getElementById('eight-btn');
+const nineButton = document.getElementById('nine-btn');
+const addButton = document.getElementById('add-btn');
+const subtractButton = document.getElementById('subtract-btn');
+const multiplyButton = document.getElementById('multiply-btn');
+const divideButton = document.getElementById('divide-btn');
+const equalButton = document.getElementById('equal-btn');
+const clearButton = document.getElementById('clear-btn');
+
+// Display value
+
+let displayValue = '';
+display.textContent = displayValue;
+
+// Number buttons functionality
+
+function pressNumber(number) {
+    displayValue = displayValue.concat(number);
+    display.textContent = displayValue;
+}
+
+zeroButton.addEventListener('click', () => pressNumber('0'));
+oneButton.addEventListener('click', () => pressNumber('1'));
+twoButton.addEventListener('click', () => pressNumber('2'));
+threeButton.addEventListener('click', () => pressNumber('3'));
+fourButton.addEventListener('click', () => pressNumber('4'));
+fiveButton.addEventListener('click', () => pressNumber('5'));
+sixButton.addEventListener('click', () => pressNumber('6'));
+sevenButton.addEventListener('click', () => pressNumber('7'));
+eightButton.addEventListener('click', () => pressNumber('8'));
+nineButton.addEventListener('click', () => pressNumber('9'));
