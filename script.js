@@ -81,3 +81,41 @@ sixButton.addEventListener('click', () => pressNumber('6'));
 sevenButton.addEventListener('click', () => pressNumber('7'));
 eightButton.addEventListener('click', () => pressNumber('8'));
 nineButton.addEventListener('click', () => pressNumber('9'));
+
+// Operation
+
+let currentOperator = '';
+let firstOperand = '';
+let secondOperand = '';
+
+function pressOperator(operator) {
+    currentOperator = operator;
+    firstOperand = displayValue;
+    displayValue = '';
+}
+
+addButton.addEventListener('click', () => pressOperator('+'));
+subtractButton.addEventListener('click', () => pressOperator('-'));
+multiplyButton.addEventListener('click', () => pressOperator('*'));
+divideButton.addEventListener('click', () => pressOperator('/'));
+
+function pressEqual() {
+    secondOperand = displayValue;
+    let solution = operate(currentOperator, firstOperand, secondOperand);
+    displayValue = solution;
+    display.textContent = displayValue;
+}
+
+equalButton.addEventListener('click', () => pressEqual());
+
+// Clear functionality
+
+function pressClear() {
+    displayValue = '';
+    firstOperand = '';
+    secondOperand = '';
+    currentOperator = '';
+    display.textContent = displayValue;
+}
+
+clearButton.addEventListener('click', () => pressClear());
