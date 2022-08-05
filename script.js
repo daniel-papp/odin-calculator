@@ -102,7 +102,7 @@ divideButton.addEventListener('click', () => pressOperator('/'));
 function pressEqual() {
     secondOperand = displayValue;
     let solution = operate(currentOperator, firstOperand, secondOperand);
-    displayValue = solution;
+    displayValue = String(solution);
     display.textContent = displayValue;
 }
 
