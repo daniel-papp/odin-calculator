@@ -87,8 +87,10 @@ nineButton.addEventListener('click', () => pressNumber('9'));
 let currentOperator = '';
 let firstOperand = '';
 let secondOperand = '';
+let solution = null;
 
 function pressOperator(operator) {
+    solution = null;
     currentOperator = operator;
     firstOperand = displayValue;
     displayValue = '';
@@ -100,8 +102,12 @@ multiplyButton.addEventListener('click', () => pressOperator('*'));
 divideButton.addEventListener('click', () => pressOperator('/'));
 
 function pressEqual() {
+    console.log(solution);
+    if (solution) {
+        return;
+    }
     secondOperand = displayValue;
-    let solution = operate(currentOperator, firstOperand, secondOperand);
+    solution = operate(currentOperator, firstOperand, secondOperand);
     displayValue = String(solution);
     display.textContent = displayValue;
 }
