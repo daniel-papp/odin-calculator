@@ -113,6 +113,8 @@ function pressEqual() {
     solution = operate(currentOperator, firstOperand, secondOperand);
     displayValue = String(solution);
     display.textContent = displayValue;
+    firstOperand = '';
+    currentOperator = '';
 }
 
 function pressClear() {
