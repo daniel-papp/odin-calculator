@@ -61,7 +61,7 @@ const clearButton = document.getElementById('clear-btn');
 
 // Display value
 
-let displayValue = '';
+let displayValue = '0';
 display.textContent = displayValue;
 
 // Number buttons functionality
@@ -104,7 +104,6 @@ multiplyButton.addEventListener('click', () => pressOperator('*'));
 divideButton.addEventListener('click', () => pressOperator('/'));
 
 function pressEqual() {
-    console.log(solution);
     if (solution || !firstOperand) {
         return;
     }
