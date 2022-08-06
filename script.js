@@ -67,6 +67,9 @@ display.textContent = displayValue;
 // Number buttons functionality
 
 function pressNumber(number) {
+    if (displayValue[0] === '0' && !displayValue.includes('.')) {
+        displayValue = displayValue.substring(1);
+    }
     displayValue = displayValue.concat(number);
     display.textContent = displayValue;
 }
