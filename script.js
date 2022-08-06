@@ -1,4 +1,4 @@
-// Declaring basic math operator functions
+// Declaring functions for mathematical operations
 
 function add(a, b) {
     return a + b;
@@ -15,8 +15,6 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
-
-// Declare the operate function
 
 function operate(operator, a, b) {
     a = Number(a);
@@ -39,7 +37,7 @@ function operate(operator, a, b) {
     }
 }
 
-// Grabbing the HTML elements
+// Grabbing HTML elements
 
 const display = document.getElementById('display');
 const zeroButton = document.getElementById('zero-btn');
@@ -59,20 +57,7 @@ const divideButton = document.getElementById('divide-btn');
 const equalButton = document.getElementById('equal-btn');
 const clearButton = document.getElementById('clear-btn');
 
-// Display value
-
-let displayValue = '0';
-display.textContent = displayValue;
-
-// Number buttons functionality
-
-function pressNumber(number) {
-    if (displayValue[0] === '0' && !displayValue.includes('.')) {
-        displayValue = displayValue.substring(1);
-    }
-    displayValue = displayValue.concat(number);
-    display.textContent = displayValue;
-}
+// Setting up EventListeners
 
 zeroButton.addEventListener('click', () => pressNumber('0'));
 oneButton.addEventListener('click', () => pressNumber('1'));
@@ -84,24 +69,31 @@ sixButton.addEventListener('click', () => pressNumber('6'));
 sevenButton.addEventListener('click', () => pressNumber('7'));
 eightButton.addEventListener('click', () => pressNumber('8'));
 nineButton.addEventListener('click', () => pressNumber('9'));
+addButton.addEventListener('click', () => pressOperator('+'));
+subtractButton.addEventListener('click', () => pressOperator('-'));
+multiplyButton.addEventListener('click', () => pressOperator('*'));
+divideButton.addEventListener('click', () => pressOperator('/'));
+equalButton.addEventListener('click', () => pressEqual());
+clearButton.addEventListener('click', () => pressClear());
 
-// Operation
+// Declaring functions for button presses
 
-let currentOperator = '';
-let firstOperand = '';
-let secondOperand = '';
-let solution = null;
+function pressNumber(number) {
+    if (displayValue[0] === '0' && !displayValue.includes('.')) {
+        displayValue = displayValue.substring(1);
+    }
+    displayValue = displayValue.concat(number);
+    display.textContent = displayValue;
+}
 
 function pressOperator(operator) {
     if (!firstOperand) {
-        // solution = null;
         currentOperator = operator;
         if (displayValue !== '') {
             firstOperand = displayValue;
             displayValue = '';
         }
     } else {
-        // solution = null;
         secondOperand = displayValue;
         solution = operate(currentOperator, firstOperand, secondOperand);
         displayValue = String(solution);
@@ -111,13 +103,7 @@ function pressOperator(operator) {
         currentOperator = operator;
     }
     solution = null;
-
 }
-
-addButton.addEventListener('click', () => pressOperator('+'));
-subtractButton.addEventListener('click', () => pressOperator('-'));
-multiplyButton.addEventListener('click', () => pressOperator('*'));
-divideButton.addEventListener('click', () => pressOperator('/'));
 
 function pressEqual() {
     if (solution || !firstOperand) {
@@ -129,10 +115,6 @@ function pressEqual() {
     display.textContent = displayValue;
 }
 
-equalButton.addEventListener('click', () => pressEqual());
-
-// Clear functionality
-
 function pressClear() {
     displayValue = '0';
     firstOperand = '';
@@ -141,4 +123,12 @@ function pressClear() {
     display.textContent = displayValue;
 }
 
-clearButton.addEventListener('click', () => pressClear());
+// Initializing variables
+
+let displayValue = '0';
+let currentOperator = '';
+let firstOperand = '';
+let secondOperand = '';
+let solution = null;
+
+display.textContent = displayValue;
