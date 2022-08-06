@@ -93,12 +93,25 @@ let secondOperand = '';
 let solution = null;
 
 function pressOperator(operator) {
-    solution = null;
-    currentOperator = operator;
-    if (displayValue !== '') {
-        firstOperand = displayValue;
+    if (!firstOperand) {
+        // solution = null;
+        currentOperator = operator;
+        if (displayValue !== '') {
+            firstOperand = displayValue;
+            displayValue = '';
+        }
+    } else {
+        // solution = null;
+        secondOperand = displayValue;
+        solution = operate(currentOperator, firstOperand, secondOperand);
+        displayValue = String(solution);
+        display.textContent = displayValue;
+        firstOperand = solution;
         displayValue = '';
+        currentOperator = operator;
     }
+    solution = null;
+
 }
 
 addButton.addEventListener('click', () => pressOperator('+'));
@@ -121,7 +134,7 @@ equalButton.addEventListener('click', () => pressEqual());
 // Clear functionality
 
 function pressClear() {
-    displayValue = '';
+    displayValue = '0';
     firstOperand = '';
     secondOperand = '';
     currentOperator = '';
