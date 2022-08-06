@@ -22,16 +22,16 @@ function operate(operator, a, b) {
     switch (operator) {
         case '+' :
             return add(a, b);
-            break;
         case '-' :
             return subtract(a, b);
-            break;
         case '*' :
             return multiply(a, b);
-            break;
         case '/' :
+            if (b === 0) {
+                alert('Can\'t divide with zero!');
+                return a;
+            }
             return divide(a, b);
-            break;
         default :
             return null;
     }
@@ -88,7 +88,7 @@ function pressNumber(number) {
 }
 
 function pressOperator(operator) {
-    console.log(`LastPressed: ${lastPressed} - operator: ${operator}`);
+    // console.log(`LastPressed: ${lastPressed} - operator: ${operator}`);
     if (lastPressed === operator) {
         return;
     }
@@ -120,7 +120,7 @@ function pressEqual() {
         return;
     }
     if (lastPressed === '+' || lastPressed === '-' || lastPressed === '*' || lastPressed === '/' || lastPressed === '=') {
-        return;
+        return; 
     }
     secondOperand = displayValue;
     solution = operate(currentOperator, firstOperand, secondOperand);
