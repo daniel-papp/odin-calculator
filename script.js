@@ -84,14 +84,23 @@ function pressNumber(number) {
     }
     displayValue = displayValue.concat(number);
     display.textContent = displayValue;
+    lastPressed = '';
 }
 
 function pressOperator(operator) {
+    console.log(`LastPressed: ${lastPressed} - operator: ${operator}`);
+    if (lastPressed === operator) {
+        return;
+    }
+    if (lastPressed === '+' || lastPressed === '-' || lastPressed === '*' || lastPressed === '/') {
+        currentOperator = operator;
+        return;
+    }
     if (!firstOperand) {
         currentOperator = operator;
-        if (displayValue !== '') {
+        if (displayValue !== '0') {
             firstOperand = displayValue;
-            displayValue = '';
+            displayValue = '0';
         }
     } else {
         secondOperand = displayValue;
@@ -99,14 +108,18 @@ function pressOperator(operator) {
         displayValue = String(solution);
         display.textContent = displayValue;
         firstOperand = solution;
-        displayValue = '';
+        displayValue = '0';
         currentOperator = operator;
     }
     solution = null;
+    lastPressed = operator;
 }
 
 function pressEqual() {
     if (solution || !firstOperand) {
+        return;
+    }
+    if (lastPressed === '+' || lastPressed === '-' || lastPressed === '*' || lastPressed === '/' || lastPressed === '=') {
         return;
     }
     secondOperand = displayValue;
@@ -115,6 +128,7 @@ function pressEqual() {
     display.textContent = displayValue;
     firstOperand = '';
     currentOperator = '';
+    lastPressed = '=';
 }
 
 function pressClear() {
@@ -123,6 +137,7 @@ function pressClear() {
     secondOperand = '';
     currentOperator = '';
     display.textContent = displayValue;
+    lastPressed = '';
 }
 
 // Initializing variables
@@ -132,5 +147,6 @@ let currentOperator = '';
 let firstOperand = '';
 let secondOperand = '';
 let solution = null;
+let lastPressed = '';
 
 display.textContent = displayValue;
