@@ -83,7 +83,7 @@ function pressNumber(number) {
         displayValue = displayValue.substring(1);
     }
     displayValue = displayValue.concat(number);
-    display.textContent = displayValue;
+    updateDisplay();
     lastPressed = '';
 }
 
@@ -106,7 +106,7 @@ function pressOperator(operator) {
         secondOperand = displayValue;
         solution = operate(currentOperator, firstOperand, secondOperand);
         displayValue = String(solution);
-        display.textContent = displayValue;
+        updateDisplay();
         firstOperand = solution;
         displayValue = '0';
         currentOperator = operator;
@@ -125,7 +125,7 @@ function pressEqual() {
     secondOperand = displayValue;
     solution = operate(currentOperator, firstOperand, secondOperand);
     displayValue = String(solution);
-    display.textContent = displayValue;
+    updateDisplay();
     firstOperand = '';
     currentOperator = '';
     lastPressed = '=';
@@ -136,8 +136,12 @@ function pressClear() {
     firstOperand = '';
     secondOperand = '';
     currentOperator = '';
-    display.textContent = displayValue;
+    updateDisplay();
     lastPressed = '';
+}
+
+function updateDisplay() {
+    display.textContent = displayValue;
 }
 
 // Initializing variables
