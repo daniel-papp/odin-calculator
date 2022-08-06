@@ -105,7 +105,7 @@ divideButton.addEventListener('click', () => pressOperator('/'));
 
 function pressEqual() {
     console.log(solution);
-    if (solution) {
+    if (solution || !firstOperand) {
         return;
     }
     secondOperand = displayValue;
