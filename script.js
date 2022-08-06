@@ -92,8 +92,10 @@ let solution = null;
 function pressOperator(operator) {
     solution = null;
     currentOperator = operator;
-    firstOperand = displayValue;
-    displayValue = '';
+    if (displayValue !== '') {
+        firstOperand = displayValue;
+        displayValue = '';
+    }
 }
 
 addButton.addEventListener('click', () => pressOperator('+'));
