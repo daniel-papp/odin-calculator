@@ -141,18 +141,20 @@ function pressClear() {
 }
 
 function updateDisplay() {
-    if (displayValue[0] !== '0') {
-        roundedDisplay = String(Math.round(Number(displayValue) * 1000000) / 1000000);
-    } else {
-        roundedDisplay = displayValue;
-    }
-    if (roundedDisplay.length > 9) {
-        scientificDisplay = String(Number(roundedDisplay).toExponential());
-        display.textContent = scientificDisplay.substring(0, 5) + 
-            scientificDisplay.substring(scientificDisplay.indexOf('e'));
-    } else {
-        display.textContent = roundedDisplay;
-    }
+    // if (displayValue[0] !== '0') {
+    //     roundedDisplay = String(Math.round(Number(displayValue) * 1000000) / 1000000);
+    // } else {
+    //     roundedDisplay = displayValue;
+    // }
+    // if (roundedDisplay.length > 9) {
+    //     scientificDisplay = String(Number(roundedDisplay).toExponential());
+    //     display.textContent = scientificDisplay.substring(0, 5) + 
+    //         scientificDisplay.substring(scientificDisplay.indexOf('e'));
+    // } else {
+    //     display.textContent = roundedDisplay;
+    // }
+    // display.textContent = String(Math.round(Number(displayValue) * 1000000) / 1000000);
+    display.textContent = displayValue;
     console.log(`${displayValue} / ${displayValue.length} / ${scientificDisplay}`);
 }
 
