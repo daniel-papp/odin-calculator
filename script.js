@@ -141,7 +141,19 @@ function pressClear() {
 }
 
 function updateDisplay() {
-    display.textContent = displayValue;
+    if (displayValue[0] !== '0') {
+        roundedDisplay = String(Math.round(Number(displayValue) * 1000000) / 1000000);
+    } else {
+        roundedDisplay = displayValue;
+    }
+    if (roundedDisplay.length > 9) {
+        scientificDisplay = String(Number(roundedDisplay).toExponential());
+        display.textContent = scientificDisplay.substring(0, 5) + 
+            scientificDisplay.substring(scientificDisplay.indexOf('e'));
+    } else {
+        display.textContent = roundedDisplay;
+    }
+    console.log(`${displayValue} / ${displayValue.length} / ${scientificDisplay}`);
 }
 
 // Initializing variables
@@ -152,5 +164,7 @@ let firstOperand = '';
 let secondOperand = '';
 let solution = null;
 let lastPressed = '';
+let scientificDisplay;
+let roundedDisplay;
 
-display.textContent = displayValue;
+updateDisplay();
