@@ -83,6 +83,9 @@ deleteButton.addEventListener('click', () => pressDelete());
 // Declaring functions for button presses
 
 function pressNumber(number) {
+    if (lastPressed === '=') {
+        return;
+    }
     if (displayValue[0] === '0' && !displayValue.includes('.')) {
         displayValue = displayValue.substring(1);
     }
@@ -92,7 +95,6 @@ function pressNumber(number) {
 }
 
 function pressOperator(operator) {
-    // console.log(`LastPressed: ${lastPressed} - operator: ${operator}`);
     if (lastPressed === operator) {
         return;
     }
@@ -163,21 +165,7 @@ function pressDelete() {
 }
 
 function updateDisplay() {
-    // if (displayValue[0] !== '0') {
-    //     roundedDisplay = String(Math.round(Number(displayValue) * 1000000) / 1000000);
-    // } else {
-    //     roundedDisplay = displayValue;
-    // }
-    // if (roundedDisplay.length > 9) {
-    //     scientificDisplay = String(Number(roundedDisplay).toExponential());
-    //     display.textContent = scientificDisplay.substring(0, 5) + 
-    //         scientificDisplay.substring(scientificDisplay.indexOf('e'));
-    // } else {
-    //     display.textContent = roundedDisplay;
-    // }
-    // display.textContent = String(Math.round(Number(displayValue) * 1000000) / 1000000);
     display.textContent = displayValue;
-    // console.log(`${displayValue} / ${displayValue.length} / ${scientificDisplay}`);
 }
 
 // Initializing variables
@@ -188,7 +176,5 @@ let firstOperand = '';
 let secondOperand = '';
 let solution = null;
 let lastPressed = '';
-// let scientificDisplay;
-// let roundedDisplay;
 
 updateDisplay();
