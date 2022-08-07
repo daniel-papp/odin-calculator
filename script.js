@@ -57,6 +57,7 @@ const divideButton = document.getElementById('divide-btn');
 const equalButton = document.getElementById('equal-btn');
 const clearButton = document.getElementById('clear-btn');
 const decimalButton = document.getElementById('decimal-btn');
+const deleteButton = document.getElementById('delete-btn');
 
 // Setting up EventListeners
 
@@ -77,6 +78,7 @@ divideButton.addEventListener('click', () => pressOperator('/'));
 equalButton.addEventListener('click', () => pressEqual());
 clearButton.addEventListener('click', () => pressClear());
 decimalButton.addEventListener('click', () => pressDecimal());
+deleteButton.addEventListener('click', () => pressDelete());
 
 // Declaring functions for button presses
 
@@ -148,6 +150,16 @@ function pressDecimal() {
         updateDisplay();
         lastPressed = '';
     }
+}
+
+function pressDelete() {
+    if (displayValue.length === 1) {
+        displayValue = '0';
+    } else {
+        displayValue = displayValue.substring(0, (displayValue.length - 1));
+    }
+    updateDisplay();
+    lastPressed = '';
 }
 
 function updateDisplay() {
