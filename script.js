@@ -39,6 +39,7 @@ function operate(operator, a, b) {
 
 // Grabbing HTML elements
 
+const secondaryDisplay = document.getElementById('secondary-display');
 const display = document.getElementById('display');
 const zeroButton = document.getElementById('zero-btn');
 const oneButton = document.getElementById('one-btn');
@@ -100,25 +101,28 @@ function pressOperator(operator) {
     }
     if (lastPressed === '+' || lastPressed === '-' || lastPressed === '*' || lastPressed === '/') {
         currentOperator = operator;
+        secondaryDisplayContent = secondaryDisplayContent.substring(0, (secondaryDisplayContent.length - 2));
+        updateSecondaryDisplay('', operator);
         return;
     }
     if (!firstOperand) {
         currentOperator = operator;
         if (displayValue !== '0') {
             firstOperand = displayValue;
-            displayValue = '0';
+            updateSecondaryDisplay(displayValue, operator)
         }
     } else {
         secondOperand = displayValue;
+        updateSecondaryDisplay(displayValue, operator)
         solution = operate(currentOperator, firstOperand, secondOperand);
         displayValue = String(solution);
         updateDisplay();
         firstOperand = solution;
-        displayValue = '0';
         currentOperator = operator;
     }
     solution = null;
     lastPressed = operator;
+    displayValue = '0';
 }
 
 function pressEqual() {
@@ -130,6 +134,7 @@ function pressEqual() {
     }
     secondOperand = displayValue;
     solution = operate(currentOperator, firstOperand, secondOperand);
+    updateSecondaryDisplay(displayValue, '=')
     displayValue = String(solution);
     updateDisplay();
     firstOperand = '';
@@ -144,6 +149,8 @@ function pressClear() {
     currentOperator = '';
     updateDisplay();
     lastPressed = '';
+    secondaryDisplayContent = '';
+    secondaryDisplay.textContent = '';
 }
 
 function pressDecimal() {
@@ -164,8 +171,19 @@ function pressDelete() {
     lastPressed = '';
 }
 
+// Declaring functions for populating the displays
+
 function updateDisplay() {
     display.textContent = displayValue;
+}
+
+function updateSecondaryDisplay(numberContent, operatorContent) {
+    if (lastPressed === '=') {
+        secondaryDisplayContent = '';
+        secondaryDisplay.textContent = '';
+    }
+    secondaryDisplayContent = secondaryDisplayContent.concat(`${numberContent} ${operatorContent} `);
+    secondaryDisplay.textContent = secondaryDisplayContent;
 }
 
 // Initializing variables
@@ -176,5 +194,6 @@ let firstOperand = '';
 let secondOperand = '';
 let solution = null;
 let lastPressed = '';
+let secondaryDisplayContent = '';
 
 updateDisplay();
