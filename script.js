@@ -56,6 +56,7 @@ const multiplyButton = document.getElementById('multiply-btn');
 const divideButton = document.getElementById('divide-btn');
 const equalButton = document.getElementById('equal-btn');
 const clearButton = document.getElementById('clear-btn');
+const decimalButton = document.getElementById('decimal-btn');
 
 // Setting up EventListeners
 
@@ -75,6 +76,7 @@ multiplyButton.addEventListener('click', () => pressOperator('*'));
 divideButton.addEventListener('click', () => pressOperator('/'));
 equalButton.addEventListener('click', () => pressEqual());
 clearButton.addEventListener('click', () => pressClear());
+decimalButton.addEventListener('click', () => pressDecimal());
 
 // Declaring functions for button presses
 
@@ -140,6 +142,14 @@ function pressClear() {
     lastPressed = '';
 }
 
+function pressDecimal() {
+    if (!displayValue.includes('.')) {
+        displayValue = displayValue.concat('.');
+        updateDisplay();
+        lastPressed = '';
+    }
+}
+
 function updateDisplay() {
     // if (displayValue[0] !== '0') {
     //     roundedDisplay = String(Math.round(Number(displayValue) * 1000000) / 1000000);
@@ -155,7 +165,7 @@ function updateDisplay() {
     // }
     // display.textContent = String(Math.round(Number(displayValue) * 1000000) / 1000000);
     display.textContent = displayValue;
-    console.log(`${displayValue} / ${displayValue.length} / ${scientificDisplay}`);
+    // console.log(`${displayValue} / ${displayValue.length} / ${scientificDisplay}`);
 }
 
 // Initializing variables
@@ -166,7 +176,7 @@ let firstOperand = '';
 let secondOperand = '';
 let solution = null;
 let lastPressed = '';
-let scientificDisplay;
-let roundedDisplay;
+// let scientificDisplay;
+// let roundedDisplay;
 
 updateDisplay();
