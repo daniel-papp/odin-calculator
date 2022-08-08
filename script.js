@@ -80,6 +80,8 @@ equalButton.addEventListener('click', () => pressEqual());
 clearButton.addEventListener('click', () => pressClear());
 decimalButton.addEventListener('click', () => pressDecimal());
 deleteButton.addEventListener('click', () => pressDelete());
+window.addEventListener('keydown', (key) => handleKeyboardInput(key));
+
 
 // Declaring functions for button presses
 
@@ -171,6 +173,32 @@ function pressDelete() {
     lastPressed = '';
 }
 
+// Declaring function for keyboard support
+
+function handleKeyboardInput(pressedKey) {
+    if (pressedKey.key >= 0 && pressedKey.key <= 9) {
+        pressNumber(pressedKey.key);
+    }
+    if (pressedKey.key === '+' ||
+        pressedKey.key === '-' ||
+        pressedKey.key === '*' ||
+        pressedKey.key === '/') {
+            pressOperator(pressedKey.key);
+        }
+    if (pressedKey.key === 'Enter') {
+        pressEqual();
+    }
+    if (pressedKey.key === 'Escape') {
+        pressClear();
+    }
+    if (pressedKey.key === '.') {
+        pressDecimal();
+    }
+    if (pressedKey.key === 'Backspace') {
+        pressDelete();
+    }
+}
+
 // Declaring functions for populating the displays
 
 function updateDisplay() {
@@ -197,15 +225,3 @@ let lastPressed = '';
 let secondaryDisplayContent = '';
 
 updateDisplay();
-
-// Keyboard support
-
-window.addEventListener('keydown', (e) => console.log(`pressed a key: ${e.key}, variabletype: ${typeof(e.key)}`));
-
-window.addEventListener('keydown', (e) => handleKeyboardInput());
-
-function handleKeyboardInput(pressedKey) {
-    if (pressedKey = 'Enter') {
-        pressEqual();
-    }
-}
