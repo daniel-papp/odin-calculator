@@ -197,3 +197,15 @@ let lastPressed = '';
 let secondaryDisplayContent = '';
 
 updateDisplay();
+
+// Keyboard support
+
+window.addEventListener('keydown', (e) => console.log(`pressed a key: ${e.key}, variabletype: ${typeof(e.key)}`));
+
+window.addEventListener('keydown', (e) => handleKeyboardInput());
+
+function handleKeyboardInput(pressedKey) {
+    if (pressedKey = 'Enter') {
+        pressEqual();
+    }
+}
