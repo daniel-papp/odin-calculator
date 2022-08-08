@@ -164,6 +164,9 @@ function pressDecimal() {
 }
 
 function pressDelete() {
+    if (lastPressed === '=') {
+        return;
+    }
     if (displayValue.length === 1) {
         displayValue = '0';
     } else {
